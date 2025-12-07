@@ -1,107 +1,98 @@
-✈️ Flight Tail Optimizer
+# ✈️ Flight Tail Optimizer
 
-Real-time aircraft tail assignment, rotation planning and operational decision system.
-Built with FastAPI + Python ML models.
+Flight Tail Optimizer is an engineering prototype for an airline operations decision system.  
+The focus of the current version is building a clean, modular **backend architecture** with  
+core logic for delay risk, maintenance scoring, rotation planning, and tail assignment models  
+using **Python + FastAPI**.
 
-📌 Overview
+Bu repo, ileri aşamalarda gerçek uçuş verileri ve operasyonel süreçlerle entegre edilebilecek  
+tam ölçekli bir sistemin temelini oluşturmaktadır.
 
-Flight Tail Optimizer is a backend-driven aviation decision support system that assists airline operations teams with:
+---
 
-Tail assignment
+## ⭐ Current Scope (Backend Prototype)
 
-Delay risk prediction (XGBoost model)
+- Modular FastAPI structure  
+- Delay Risk Model (XGBoost)  
+- Maintenance Risk Model  
+- Rotation Engine (prototype logic)  
+- Tail Swap Optimizer (prototype logic)  
+- Base project layout for future UI, database, and live data integrations  
+- Docker-ready backend structure
 
-Maintenance risk scoring
+Mevcut sürüm, uçuş operasyonları için karar destek sisteminin **temel bileşenlerini** içerir ve  
+buna veri tabanı, gerçek zamanlı veri kaynakları ve kullanıcı arayüzü sonradan eklenmek üzere  
+tasarlanmıştır.
 
-Rotation planning
+---
 
-Tail swap optimization
+## 🧩 Project Structure
 
-The system is designed to work with real flight data via OpenSky Network API and includes modular ML models under a clean FastAPI architecture.
-
-🧩 Project Structure
 backend/
-   ├── src/
-   │     ├── main.py                  # FastAPI entrypoint
-   │     ├── models/
-   │     │     ├── delay_risk_model.py
-   │     │     ├── maintenance_model.py
-   │     │     ├── rotation_engine.py
-   │     │     └── tail_swap_optimizer.py
-   │     └── ...
-   ├── requirements.txt
-   └── data/
-         └── delay_training_data.csv
+│── src/
+│ │── main.py # FastAPI entrypoint
+│ │── models/
+│ │ ├── delay_risk_model.py
+│ │ ├── maintenance_model.py
+│ │ ├── rotation_engine.py
+│ │ └── tail_swap_optimizer.py
+│ └── ...
+│── requirements.txt
+└── data/
+└── delay_training_data.csv
 
 
-✔ FastAPI backend
-✔ Machine Learning models
-✔ Docker support
-✔ Ready for integration with React/Streamlit UI
 
-🚀 Running the Backend (Local Development)
-1) Create virtual environment
+---
+
+## 🚀 Running the Backend Locally
+
+### 1) Virtual Environment
+
+**Windows**
+```bash
 python -m venv venv
-source venv/bin/activate      # Mac/Linux
-venv\Scripts\activate         # Windows
+venv\Scripts\activate
 
-2) Install dependencies
+python3 -m venv venv
+source venv/bin/activate
+
 pip install -r backend/requirements.txt
 
-3) Start the backend
 uvicorn backend.src.main:app --reload --port 8000
 
 
-Backend opens at:
-➡️ http://localhost:8000
+API Docs →
+http://localhost:8000/docs
 
-Interactive API docs:
-➡️ http://localhost:8000/docs
+📌 Designed For Future Expansion
 
-🛰 Real-Time Data (OpenSky Integration)
+Bu altyapı, ileri aşamalarda entegre edilebilecek şekilde tasarlandı:
 
-The system is designed to integrate with:
+Flight schedule database
 
-OpenSky REST API
-✓ Live ADS-B flight positions
-✓ Aircraft state vectors
-✓ Tail number inference
-✓ Operational monitoring
+Live data sources (ADS-B / airline ops feeds)
 
-Planned endpoints:
+Frontend dashboard (React / Streamlit)
 
-/live/fleet
-/live/positions
-/ops/rotation
-/ops/tail-swap
+Disruption management modules
 
-🧠 Machine Learning Models
-Model	Purpose	Status
-DelayRiskModel	Predict probability of delay from schedule features	✔ Ready
-MaintenanceModel	Estimate maintenance-related operational risk	✔ Ready
-RotationEngine	Build optimal daily rotations	✔ Prototype
-TailSwapOptimizer	Optimize tail swaps under disruptions	✔ Prototype
-🐳 Docker (Optional)
+Optimization improvements (MILP, heuristics)
 
-Build & run:
+🛫 Roadmap
 
-docker-compose up --build
+ Database schema and storage layer
 
+ Fleet & schedule ingestion module
 
-Backend starts on port 8000 inside the container.
+ Frontend dashboard
 
-📌 Roadmap
+ Extended tail swap solver
 
- React/Streamlit frontend
+ Enhanced rotation planner
 
- OpenSky real-time ingest pipeline
+ Monitoring & alerting
 
- Tail swap solver (MILP + heuristics)
-
- Fleet dashboard
-
- Delay model v2 (Gradient Boosting)
-
-🧑‍💻 Author
+👩‍💻 Author
 
 Gizem Göçük
