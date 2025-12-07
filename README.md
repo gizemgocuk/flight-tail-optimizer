@@ -1,37 +1,107 @@
-# Senior Tail Optimizer
+✈️ Flight Tail Optimizer
 
-A full-stack decision support system for airline flight operations.
+Real-time aircraft tail assignment, rotation planning and operational decision system.
+Built with FastAPI + Python ML models.
 
-## 🏗 Project Structure
+📌 Overview
 
-- **frontend/**: React + Vite application (Currently running in this preview)
-- **backend/**: Python + FastAPI + Machine Learning Models (Reference implementation)
-- **dashboard/**: Streamlit Operations Dashboard (Reference implementation)
+Flight Tail Optimizer is a backend-driven aviation decision support system that assists airline operations teams with:
 
-## 🚀 Running the Frontend (Web Preview)
+Tail assignment
 
-In this environment, the **Frontend** is configured to run in "Standalone Mode". 
-The complex backend logic (XGBoost models, Rotation Engine) has been simulated in `services/optimizerEngine.ts` to allow you to test the functionality immediately without a Python environment.
+Delay risk prediction (XGBoost model)
 
-## 🐍 Running the Full Stack (Local Development)
+Maintenance risk scoring
 
-To run the complete system with the actual Python backend and Streamlit dashboard:
+Rotation planning
 
-1. **Install Docker** on your machine.
-2. **Clone** this repository.
-3. Run the stack:
-   ```bash
-   docker-compose up --build
-   ```
+Tail swap optimization
 
-### Services Ports
-- **Frontend**: http://localhost:80
-- **Backend API**: http://localhost:8000/docs
-- **Streamlit Dashboard**: http://localhost:8501
+The system is designed to work with real flight data via OpenSky Network API and includes modular ML models under a clean FastAPI architecture.
 
-## 🧠 Models Included
+🧩 Project Structure
+backend/
+   ├── src/
+   │     ├── main.py                  # FastAPI entrypoint
+   │     ├── models/
+   │     │     ├── delay_risk_model.py
+   │     │     ├── maintenance_model.py
+   │     │     ├── rotation_engine.py
+   │     │     └── tail_swap_optimizer.py
+   │     └── ...
+   ├── requirements.txt
+   └── data/
+         └── delay_training_data.csv
 
-1. **Delay Risk Model**: XGBoost implementation to predict delay probability based on weather and schedule.
-2. **Maintenance Risk**: Heuristic model based on aircraft age, cycles, and snag list.
-3. **Rotation Engine**: Validates connection times (MCT) and geographic continuity.
-4. **Tail Swap Optimizer**: Suggests aircraft swaps to minimize operational risk.
+
+✔ FastAPI backend
+✔ Machine Learning models
+✔ Docker support
+✔ Ready for integration with React/Streamlit UI
+
+🚀 Running the Backend (Local Development)
+1) Create virtual environment
+python -m venv venv
+source venv/bin/activate      # Mac/Linux
+venv\Scripts\activate         # Windows
+
+2) Install dependencies
+pip install -r backend/requirements.txt
+
+3) Start the backend
+uvicorn backend.src.main:app --reload --port 8000
+
+
+Backend opens at:
+➡️ http://localhost:8000
+
+Interactive API docs:
+➡️ http://localhost:8000/docs
+
+🛰 Real-Time Data (OpenSky Integration)
+
+The system is designed to integrate with:
+
+OpenSky REST API
+✓ Live ADS-B flight positions
+✓ Aircraft state vectors
+✓ Tail number inference
+✓ Operational monitoring
+
+Planned endpoints:
+
+/live/fleet
+/live/positions
+/ops/rotation
+/ops/tail-swap
+
+🧠 Machine Learning Models
+Model	Purpose	Status
+DelayRiskModel	Predict probability of delay from schedule features	✔ Ready
+MaintenanceModel	Estimate maintenance-related operational risk	✔ Ready
+RotationEngine	Build optimal daily rotations	✔ Prototype
+TailSwapOptimizer	Optimize tail swaps under disruptions	✔ Prototype
+🐳 Docker (Optional)
+
+Build & run:
+
+docker-compose up --build
+
+
+Backend starts on port 8000 inside the container.
+
+📌 Roadmap
+
+ React/Streamlit frontend
+
+ OpenSky real-time ingest pipeline
+
+ Tail swap solver (MILP + heuristics)
+
+ Fleet dashboard
+
+ Delay model v2 (Gradient Boosting)
+
+🧑‍💻 Author
+
+Gizem Göçük
